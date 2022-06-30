@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import Employee, department
+from .models import Employee, Department
 
 
-admin.site.register(department)
+admin.site.register(Department)
 admin.site.register(Employee)
 
 # Register your models here.

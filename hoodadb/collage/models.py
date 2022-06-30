@@ -1,7 +1,6 @@
 from django.db import models
 
-class department(models.Model):
-    id = models.IntegerField(primary_key=True)
+class Department(models.Model):
     name = models.CharField(max_length=50)
 
     def __str__(self):
@@ -14,11 +13,11 @@ class Employee(models.Model):
     last_name = models.CharField(max_length=75)
     date_of_birth = models.DateField()
     gender=models.CharField(max_length=20,choices=gender_choose,)
-    email_id = models.CharField(max_length=100)
+    email_id = models.EmailField(max_length=100)
     address = models.CharField(max_length=100)
-    department_id = models.ForeignKey(department, on_delete=models.CASCADE)
+    department_id = models.ForeignKey(Department, on_delete=models.CASCADE)
     is_department_head = models.BooleanField()
-    postition = models.IntegerField()
+    postition = models.CharField(max_length=50)
 
 
     def __str__(self):
