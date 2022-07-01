@@ -5,17 +5,17 @@ from .models import Employee,Department
 
 
 # Create your views here.
-def indexm(request):
+def employee(request):
     form_data = empolyee_form()
     db_data= Employee.objects.all()
     if request.method =='POST':
         form_data= empolyee_form(request.POST)
         if form_data.is_valid:
             form_data.save()
-            return HttpResponseRedirect('/indexm/')
+            return HttpResponseRedirect('/employee/')
     
     # context ={'form':form}
-    return render(request, 'indexm.html', {'form':form_data,'data':db_data})
+    return render(request, 'employee.html', {'form':form_data,'data':db_data})
 
 
 
@@ -27,7 +27,7 @@ def update(request,id):
         form_data= empolyee_form(request.POST, instance=db_data)
         if form_data.is_valid:
             form_data.save()
-            return HttpResponseRedirect("/indexm/")
+            return HttpResponseRedirect("/employee/")
 
     else:
         form_data=empolyee_form(instance= db_data)
@@ -39,7 +39,7 @@ def update(request,id):
 
 def delete(request, id):
     data = Employee.objects.get(pk =id).delete()
-    return HttpResponseRedirect('/indexm/')
+    return HttpResponseRedirect('/employee/')
 
 # function for department update and delete
 def department(request):
@@ -53,7 +53,7 @@ def department(request):
 
     return render(request, 'department.html',{"dform":dep_form, "date": depdata})
 
-def depupdate(request, id):
+def departmentupdate(request, id):
     dep_form = department_form()
     dep_data = Department.objects.get(id=id)
     if request.method=="POST":
@@ -69,7 +69,7 @@ def depupdate(request, id):
 
 
 
-def depdelete(request, id):
+def departmentdelete(request, id):
     data = Department.objects.get(id=id).delete()
     return HttpResponseRedirect('/department/')
 

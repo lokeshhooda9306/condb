@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="  {% url 'indexm' %} ">back to empolyee data</a>
+    <a href="  {% url 'employee' %} ">back to empolyee data</a>
     <form method="post">
         {% csrf_token %}
         {{dform.as_p}}
@@ -19,8 +19,8 @@
      <h3>id : {{d.id}}</h3> 
     <h3>Name : {{d.name}}</h3>
  
-    <a href=" {% url 'depdelete' d.id %} ">delete</a>
-    <a href=" {% url 'depupdate' d.id %} ">update</a> 
+    <a href=" {% url 'departmentdelete' d.id %} ">delete</a>
+    <a href=" {% url 'departmentupdate' d.id %} ">update</a> 
     {% endfor %}
 
 
