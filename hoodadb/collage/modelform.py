@@ -1,5 +1,6 @@
+from itertools import product
 from django import forms
-from .models import Employee, Department
+from .models import Employee, Department, Project
 
 
 
@@ -21,3 +22,9 @@ class department_form(forms.ModelForm):
     class Meta:
         model = Department
         fields="__all__"
+
+
+class project_form(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields ="__all__"

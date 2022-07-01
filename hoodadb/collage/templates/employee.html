@@ -14,6 +14,8 @@
 </head>
 <body>
     <a href=" {% url 'department' %} ">department data</a>
+    <a href=" {% url 'project' %} ">project data</a>
+
     <div style="float:left;width:50%;">
         
     <center>
@@ -34,7 +36,10 @@
             <h2> gender :{{d.gender}}</h2>
             <h2>email :{{d.email_id}}</h2>
             <h2>address : {{d.address}}</h2>
-            <h2>department id :{{d.department_id}}</h2>
+            <h2>department id :{{d.department_id}}</h2><h2>product_id:
+            {% for i in d.project_id.all %}
+            {{ i }}
+            {% endfor %}</h2>
             <a href=" {% url 'update' d.id %} ">update</a>
             <a href=" {% url 'delete' d.id%} ">delete</a>
             

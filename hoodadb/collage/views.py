@@ -1,7 +1,7 @@
 from django.shortcuts import render,HttpResponseRedirect
 # from collage.modelform import empolyee_form
-from .modelform import empolyee_form, department_form
-from .models import Employee,Department
+from .modelform import empolyee_form, department_form,project_form
+from .models import Employee,Department,Project
 
 
 # Create your views here.
@@ -75,8 +75,38 @@ def departmentdelete(request, id):
 
 
 
+# function for project update and delete
+
+def project(request):
+    pro_form = project_form()
+    prodata = Project.objects.all()
+    if request.method =='POST':
+        pro_form= project_form(request.POST)
+        if pro_form.is_valid:
+            pro_form.save()
+            return HttpResponseRedirect('/project/')
+
+    return render(request, 'project.html',{"pform":pro_form, "date": prodata})
 
 
 
 
+def projectupdate(request, id):
+    pro_form = project_form()
+    pro_data = Project.objects.get(id=id)
+    if request.method=="POST":
+        pro_form= project_form(request.POST, instance=pro_data)
+        if pro_form.is_valid:
+            pro_form.save()
+            return HttpResponseRedirect("/project/")
 
+    else:
+        pro_form=project_form(instance= pro_data)
+
+    return render(request, 'projectupdate.html', {'pform':pro_form, "data": pro_data})
+
+
+
+def projectdelete(request, id):
+    data = Project.objects.get(id=id).delete()
+    return HttpResponseRedirect('/project/')
